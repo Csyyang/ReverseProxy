@@ -1,18 +1,13 @@
 const express = require('express')
-const { createProxyMiddleware } = require('http-proxy-middleware')
-const { setConfig } = require('./util.js')
 const https = require('https')
 const fs = require('fs')
 const path = require('path')
+const { photoProxy, vue3BlogProxy }  = require('./config/proxy.js')
 
 const app = express()
 
-// 代理配置
-const photoOption = setConfig('http://localhost:8080', {
-    '^/photo': ''
-})
-const phtotProxy = createProxyMiddleware(photoOption);
-app.use('/photo', phtotProxy);
+app.use('/photo', photoProxy);
+app.use('/vue3Blog', vue3BlogProxy);
 
 // https 配置
 const HTTPS_OPTOIN = {
