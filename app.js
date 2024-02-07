@@ -6,6 +6,8 @@ const { photoProxy, vue3BlogProxy }  = require('./config/proxy.js')
 
 const app = express()
 
+app.use('/file',express.static('public'))
+
 
 app.get('/',function(req,res) {
   res.redirect('/vue3Blog#/')
